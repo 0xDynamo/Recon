@@ -1,6 +1,6 @@
-#!/bin/bash
 
-# This Bash script automates the process of running several tools to enumerate subdomains of a specified domain.
+
+## This Bash script automates the process of running several tools to enumerate subdomains of a specified domain.
 # This is something I personally use for my own personal recon.
 # The tools used are:
 # - subfinder
