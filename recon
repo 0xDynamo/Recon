@@ -22,16 +22,19 @@ fi
 # Run the tools with their flags
 subfinder -d $DOMAIN -o subdomains/subfinder-subs
 crtsh -d $DOMAIN -r > subdomains/crtsh-subs
-githubsubs -d $DOMAIN -e -t "GITHUB TOKEN"
+githubsubs -d $DOMAIN -e -t "GITHUB TOKEN" > githubsubs
 assetfinder $DOMAIN > subdomains/assetfinder-subs
-amass enum -d $DOMAIN -ip -alts -active -o subdomains/amass-subs
-asnmap -d $DOMAIN -o subdomains/asn-subs
+amass enum -d $DOMAIN -ip -alts -active -o subdomains/amass-output
+asnmap -d $DOMAIN -o subdomains/asn-IPs
 
-# Extract IP addresses and domains from the files in the subdomains folder
-for file in subdomains/*; do
   # Extract IP addresses and save to DOMAIN-IPs file
-  cat $file | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | sort -u > DOMAIN-IPs
-
+  cat /home/dynamo/bugbounty/indeed/subdomains/amass-output | awk -F " " '{print $2}' |sed 's/,/\n/g' > amass-IPs  
   # Extract domains and save to DOMAIN-subs-extracted file
-  cat $file | grep -Eo '([a-zA-Z0-9]*\.)?$DOMAIN' | sort -u > DOMAIN-subs-extracted
-done
+  cat /home/dynamo/bugbounty/indeed/subdomains/amass-subs | awk -F " " '{print $1}' > amass-subs
+   
+ #Parse all found subdomains, combine them into one file "all-subs" ready next phase.
+ cat subfinder-subs crtsh-subs githubsubs assetfinder-subs amass-subs | uniq > all-subs
+ #Parse all foud IPs, combine them into one file "all-IPs" ready for next phase.
+ cat amass-IPs asn-IPs | uniq > all-IPs
+
+#TODO: BUILD on this, make it 1Click recon like other frameworks
