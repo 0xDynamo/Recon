@@ -1,18 +1,18 @@
 
 
-# This Bash script automates the process of running several tools to enumerate subdomains of a specified domain.
-# This is something I personally use for my own personal recon.
-# The tools used are:
-# - subfinder
-# - crtsh
-# - githubsubs
-# - assetfinder
-# - amass
-# - asnmap
+# This Bash script automates the process of running several tools to enumerate subdomains of a specified domain.This is something I personally use for my own personal recon.
+ 
+ The tools used are:
+ - subfinder
+ - crtsh
+ - githubsubs
+ - assetfinder
+ - amass
+ - asnmap
 
-# Usage
-# To run the script, use the following command:
-# ./script.sh [domain]
+ Usage
+ To run the script, use the following command:
+ ./script.sh [domain]
 
 # You can also use the -h flag to display a help message with usage instructions:
 # ./script.sh -h
