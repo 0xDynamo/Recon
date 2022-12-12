@@ -22,7 +22,7 @@ fi
 # Run the tools with their flags
 subfinder -d $DOMAIN -o subdomains/subfinder-subs
 crtsh -d $DOMAIN -r > subdomains/crtsh-subs
-githubsubs -d $DOMAIN -e -t "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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"
+githubsubs -d $DOMAIN -e -t "GITHUB TOKEN"
 assetfinder $DOMAIN > subdomains/assetfinder-subs
 amass enum -d $DOMAIN -ip -alts -active -o subdomains/amass-subs
 asnmap -d $DOMAIN -o subdomains/asn-subs
